@@ -104,7 +104,6 @@ def visualizar_csv_post():
 
 
 # Rota para descriptografar o CSV
-# Rota para descriptografar o CSV
 @app.route('/descriptografar', methods=['POST'])
 def descriptografar():
     backup_path = "backup/transferencias_criptografadas.bkp"

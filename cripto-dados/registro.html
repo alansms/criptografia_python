@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Registro</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -37,7 +37,7 @@
             color: #555;
         }
 
-        input[type="email"], input[type="password"] {
+        input[type="text"], input[type="email"], input[type="password"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -61,67 +61,39 @@
             background-color: #45a049;
         }
 
-        .register-link {
+        .login-link {
             text-align: center;
             margin-top: 20px;
         }
 
-        .register-link a {
+        .login-link a {
             text-decoration: none;
             color: #4CAF50;
             font-weight: bold;
         }
 
-        .register-link a:hover {
-            text-decoration: underline;
-        }
-
-        .game-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .game-link a {
-            text-decoration: none;
-            color: #4CAF50;
-            font-weight: bold;
-        }
-
-        .game-link a:hover {
+        .login-link a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Login</h2>
-        <!-- Flash Messages -->
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            <div class="flash-messages" style="color: red; text-align: center;">
-              {% for message in messages %}
-                <p>{{ message }}</p>
-              {% endfor %}
-            </div>
-          {% endif %}
-        {% endwith %}
+        <h2>Registro</h2>
+        <form id="registroForm" action="{{ url_for('registrar') }}" method="POST">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
 
-        <form action="{{ url_for('fazer_login') }}" method="POST">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="Digite seu email" required>
 
             <label for="senha">Senha</label>
             <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
 
-            <button type="submit">Entrar</button>
+            <button type="submit">Registrar</button>
         </form>
-
-        <div class="register-link">
-            <p>Não tem uma conta? <a href="{{ url_for('registro') }}">Novo cadastro</a></p>
-        </div>
-
-        <div class="game-link">
-            <p>Ou jogue um <a href="{{ url_for('jogo') }}">jogo simples</a> enquanto espera!</p>
+        <div class="login-link">
+            <p>Já tem uma conta? <a href="{{ url_for('login') }}">Fazer login</a></p>
         </div>
     </div>
 </body>

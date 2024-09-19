@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo Simples</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        #game-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            background-color: white;
+            border: 2px solid #4CAF50;
+        }
+
+        #circle {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        #score {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #back-button {
+            background-color: #FF5733;
+            margin-top: 10px;
+        }
+
+        #back-button:hover {
+            background-color: #FF4500;
+        }
+    </style>
+</head>
+<body>
+    <h1>Clique no Círculo!</h1>
+    <div id="game-container">
+        <div id="circle"></div>
+    </div>
+    <div id="score">Pontuação: 0</div>
+    <button onclick="restartGame()">Reiniciar Jogo</button>
+
+    <!-- Botão para voltar à tela de boas-vindas -->
+    <form action="{{ url_for('bemvindo') }}">
+        <button id="back-button">Voltar para a Tela de Bem-vindo</button>
+    </form>
+
+    <script>
+        let score = 0;
+        const circle = document.getElementById('circle');
+        const gameContainer = document.getElementById('game-container');
+        const scoreDisplay = document.getElementById('score');
+
+        // Função para gerar uma posição aleatória para o círculo
+        function moveCircle() {
+            const x = Math.floor(Math.random() * (gameContainer.offsetWidth - circle.offsetWidth));
+            const y = Math.floor(Math.random() * (gameContainer.offsetHeight - circle.offsetHeight));
+            circle.style.left = x + 'px';
+            circle.style.top = y + 'px';
+        }
+
+        // Evento de clique no círculo
+        circle.addEventListener('click', function() {
+            score++;
+            scoreDisplay.textContent = 'Pontuação: ' + score;
+            moveCircle();
+        });
+
+        // Função para reiniciar o jogo
+        function restartGame() {
+            score = 0;
+            scoreDisplay.textContent = 'Pontuação: ' + score;
+            moveCircle();
+        }
+
+        // Mover o círculo quando a página é carregada
+        window.onload = function() {
+            moveCircle();
+        }
+    </script>
+</body>
+</html>

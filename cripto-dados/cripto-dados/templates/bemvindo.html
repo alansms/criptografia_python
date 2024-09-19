@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .welcome-message {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #333;
+            font-size: 18px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .file-access, .decrypt-access {
+            margin-top: 20px;
+        }
+
+        input[type="password"] {
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+
+        .flash-messages {
+            color: green;
+            font-size: 16px;
+            margin-bottom: 10px;
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+        }
+
+        /* Estilo para botões lado a lado */
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .button-group button {
+            flex: 1;
+            margin: 0 5px;
+        }
+
+    </style>
+    <!-- Script do Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <div class="welcome-message">
+        <!-- Exibe as mensagens de flash e as limpa depois -->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-messages">
+              {% for message in messages %}
+                <p>{{ message }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <h1>Bem-vindo, {{ nome }}!</h1>
+        <p>Parabéns, você fez login com sucesso.</p>
+
+        <!-- Novo formulário para acessar o arquivo puro -->
+        <div class="file-access">
+            <form action="{{ url_for('visualizar_csv') }}" method="GET">
+                <button type="submit">Mostrar Arquivo Puro</button>
+            </form>
+        </div>
+
+        <!-- Formulário para inserir a senha e acessar o arquivo criptografado -->
+        <div class="file-access">
+            <form action="{{ url_for('visualizar_csv_post') }}" method="POST">
+                <input type="password" name="password" placeholder="Digite a senha para criptografia" required>
+                <button type="submit">Criptografar Arquivo</button>
+            </form>
+        </div>
+
+        <!-- Novo formulário para acessar o arquivo descriptografado -->
+        <div class="decrypt-access">
+            <form action="{{ url_for('descriptografar') }}" method="POST">
+                <input type="password" name="password" placeholder="Digite a senha para descriptografia" required>
+                <button type="submit">Descriptografar Arquivo</button>
+            </form>
+        </div>
+
+        <!-- Botões Jogar e Logout lado a lado com ajuste de largura -->
+        <div class="button-group">
+            <!-- Botão para acessar o jogo -->
+            <form action="{{ url_for('jogo') }}" method="GET">
+                <button type="submit">Divirtir!</button>
+            </form>
+
+            <!-- Formulário de logout -->
+            <form action="{{ url_for('logout') }}" method="POST">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script para acionar os confetes quando a página for carregada -->
+    <script>
+        window.onload = function() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        };
+    </script>
+</body>
+</html>

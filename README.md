@@ -61,32 +61,6 @@ Este projeto foi desenvolvido para realizar a **criptografia e descriptografia d
 3. python app.py
 4. http://localhost:5000
 5. Diagrama:
-  Layer
-    |
-    |------ /templates
-    |           |
-    |           |------ login.html
-    |           |------ registro.html
-    |           |------ bemvindo.html
-    |           |------ visualizar_csv.html
-    |           |------ jogo.html
-    |
-Backend Layer
-    |
-    |------ app.py
-    |------ pacman.py
-    |
-Database Layer
-    |
-    |------ banco.db
-    |
-    |------ transferencias_ficticias.csv
-    |
-Backup Storage
-    |
-    |------ /backup
-                |
-                |------ transferencias_criptografadas.bkp
-
+ diagrama 
 
    

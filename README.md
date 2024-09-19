@@ -63,31 +63,33 @@ Este projeto foi desenvolvido para realizar a **criptografia e descriptografia d
 5. Diagrama:
  diagrama
 # Estrutura do Projeto
-User Interaction Layer
-|
-|—— /templates
-|           |
-|           |—— login.html
-|           |—— registro.html
-|           |—— bemvindo.html
-|           |—— visualizar_csv.html
-|           |—— jogo.html
-|
-Backend Layer
-|
-|—— app.py
-|—— pacman.py
-|
-Database Layer
-|
-|—— banco.db
-|
-|—— transferencias_ficticias.csv
-|
-Backup Storage
-|
-|—— /backup
-|
-|—— transferencias_criptografadas.bkp
 
+<pre><code>
+User Interaction Layer
+    |
+    |------ /templates
+    |           |
+    |           |------ login.html
+    |           |------ registro.html
+    |           |------ bemvindo.html
+    |           |------ visualizar_csv.html
+    |           |------ jogo.html
+    |
+Backend Layer
+    |
+    |------ app.py
+    |------ pacman.py
+    |
+Database Layer
+    |
+    |------ banco.db
+    |
+    |------ transferencias_ficticias.csv
+    |
+Backup Storage
+    |
+    |------ /backup
+                |
+                |------ transferencias_criptografadas.bkp
+</code></pre>
    
